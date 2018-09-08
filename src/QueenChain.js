@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Btn from './components/Button';
-import WalletDetailsPane from './components/WalletDetailsPane';
+import QueenChainActionMenu from './components/QueenChainActionMenu';
 import TextField from '@material-ui/core/TextField';
 import { LOADING } from './StyleGuide';
 import logo from './imgs/queenchain.jpg';
@@ -52,9 +52,10 @@ class QueenChain extends Component {
   }
 
 
+
+  // TODO: Validate password, right now just placeholder
   render() {
 
-    var walletDetailsPane = <div></div>
     var actionMenu = <div></div>
     var login =
     <div> 
@@ -63,6 +64,9 @@ class QueenChain extends Component {
         </div> 
         <div>
           <TextField type='Password' onChange={this.handlePasswordChange.bind(this)} placeholder="Password"/>
+        </div>
+         <div>
+          <TextField type='Password' placeholder="Validate Password"/> 
         </div>
         <div>
           <Btn primary onClick={this.createEthAddress.bind(this)} type="submit"> Create Account </Btn>
@@ -73,7 +77,8 @@ class QueenChain extends Component {
       login = <LOADING> <i className="fa fa-circle-o-notch fa-spin"></i> Creating Account... </LOADING>
     }
     if (this.state.wallet !== '') {
-      login = <div>Welcome, {this.state.username}</div>
+      login = <div><h2>Welcome, {this.state.username}</h2></div>
+      actionMenu = <QueenChainActionMenu/>
     }
 
 
@@ -81,9 +86,8 @@ class QueenChain extends Component {
     return (
       <div className="App">
       	<h1> Welcome to QueenChain...</h1>
+        <p> Spill the tea, throw some shade, and find your sugar daddy. </p>
         <img src={logo} width="500" height="300" />
-      	<p> Spill the tea, throw some shade, and find your sugar daddy. </p>
-        {walletDetailsPane}
         {login}
         {actionMenu}
       </div>

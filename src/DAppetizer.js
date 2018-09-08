@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Btn from './components/Button';
-import WalletDetailsPane from './components/WalletDetailsPane';
+import DAppetizerActionMenu from './components/DAppetizerActionMenu';
 import TextField from '@material-ui/core/TextField';
 import { LOADING } from './StyleGuide';
 import logo from './imgs/appetizer.jpg';
@@ -54,7 +54,6 @@ class DAppetizer extends Component {
 
   render() {
 
-    var walletDetailsPane = <div></div>
     var actionMenu = <div></div>
     var login =
     <div> 
@@ -63,6 +62,9 @@ class DAppetizer extends Component {
         </div> 
         <div>
           <TextField type='Password' onChange={this.handlePasswordChange.bind(this)} placeholder="Password"/>
+        </div>
+         <div>
+          <TextField type='Password' placeholder="Validate Password"/> 
         </div>
         <div>
           <Btn primary onClick={this.createEthAddress.bind(this)} type="submit"> Create Account </Btn>
@@ -73,17 +75,17 @@ class DAppetizer extends Component {
       login = <LOADING> <i className="fa fa-circle-o-notch fa-spin"></i> Creating Account... </LOADING>
     }
     if (this.state.wallet !== '') {
-      login = <div>Welcome, {this.state.username}</div>
+      login = <div><h2>Welcome, {this.state.username}</h2></div>
+      actionMenu = <div><DAppetizerActionMenu/></div>
     }
 
 
 
     return (
       <div className="App">
-      	<h1> Welcome to DAppetizer</h1>
-      	<img src={logo} width="500" height="300" />
+      	<h1> Welcome to DAppetizer!</h1>
       	<p> The tastiest DApp on the Blockchain </p>
-        {walletDetailsPane}
+      	<img src={logo} width="500" height="300" />
         {login}
         {actionMenu}
       </div>

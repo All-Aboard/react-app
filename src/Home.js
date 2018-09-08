@@ -26,13 +26,28 @@ class Home extends Component {
     }
   }
 
+  logOut(){
+    localStorage.clear();
+    this.setState();
+    window.location.reload();
+  }
+
   render() {
     var welcomeMessage = <div> <h1> Welcome to EnterCrypto! </h1> 
-    <div>Choose your favorite DApp in the top right menu to begin!</div> </div>
+    <div>Choose your favorite DApp in the top right menu to begin!</div></div>
+    var walletInformation = <div></div>
+    var logOut = <div></div>
 
+    if (this.state.username !== '') {
+      welcomeMessage = <div><h1>Welcome, {this.state.username}</h1></div>
+      walletInformation = <div> Multi-sig Wallet Info </div>
+      logOut = <div><Btn primary onClick={this.logOut.bind(this)} type="submit"> Log Out </Btn></div>
+    }
     return (
       <div className="App">
         {welcomeMessage}
+        {walletInformation}
+        {logOut}
       </div>
     );
   }
