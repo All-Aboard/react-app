@@ -3,6 +3,7 @@ import Btn from './components/Button';
 import WalletDetailsPane from './components/WalletDetailsPane';
 import TextField from '@material-ui/core/TextField';
 import { LOADING } from './StyleGuide';
+import logo from './imgs/appetizer.jpg';
 import './App.css';
 
 const ethers = require('ethers');
@@ -80,6 +81,7 @@ class DAppetizer extends Component {
     return (
       <div className="App">
       	<h1> Welcome to DAppetizer</h1>
+      	<img src={logo} width="500" height="300" />
       	<p> The tastiest DApp on the Blockchain </p>
         {walletDetailsPane}
         {login}

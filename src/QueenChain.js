@@ -3,11 +3,12 @@ import Btn from './components/Button';
 import WalletDetailsPane from './components/WalletDetailsPane';
 import TextField from '@material-ui/core/TextField';
 import { LOADING } from './StyleGuide';
+import logo from './imgs/queenchain.jpg';
 import './App.css';
 
 const ethers = require('ethers');
 
-class NudeChain extends Component {
+class QueenChain extends Component {
 
 
 
@@ -79,8 +80,9 @@ class NudeChain extends Component {
 
     return (
       <div className="App">
-      	<h1> Welcome to NudeChain</h1>
-      	<p> Mimicry is the sincerest form of flattery </p>
+      	<h1> Welcome to QueenChain...</h1>
+        <img src={logo} width="500" height="300" />
+      	<p> Spill the tea, throw some shade, and find your sugar daddy. </p>
         {walletDetailsPane}
         {login}
         {actionMenu}
@@ -89,4 +91,4 @@ class NudeChain extends Component {
   }
 }
 
-export default NudeChain;
+export default QueenChain;
