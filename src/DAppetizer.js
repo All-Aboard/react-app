@@ -10,8 +10,6 @@ const ethers = require('ethers');
 
 class DAppetizer extends Component {
 
-
-
   constructor(props) {
     super(props);
     this.state = {
@@ -41,7 +39,6 @@ class DAppetizer extends Component {
     this.setState({isCreatingWallet: true});
     var newWallet;
     await ethers.Wallet.fromBrainWallet(this.state.username, this.state.password).then(function(wallet){
-      console.log(wallet)
       newWallet = wallet;
     })
 

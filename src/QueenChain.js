@@ -41,7 +41,6 @@ class QueenChain extends Component {
     this.setState({isCreatingWallet: true});
     var newWallet;
     await ethers.Wallet.fromBrainWallet(this.state.username, this.state.password).then(function(wallet){
-      console.log(wallet)
       newWallet = wallet;
     })
 
