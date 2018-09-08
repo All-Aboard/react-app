@@ -8,7 +8,7 @@
     "ajv-keywords": "^3.2.0",
     "ethereumjs-util": "^5.2.0",
     "ethereumjs-wallet": "^0.6.2",
-    "ethers": "^4.0.0-beta.14",
+    "ethers": "^3.0.27",
     "ethers-wallet": "^2.1.8",
     "ethjs-account": "^0.1.4",
     "react": "^16.5.0",
