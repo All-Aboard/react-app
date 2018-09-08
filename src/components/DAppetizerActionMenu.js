@@ -21,7 +21,6 @@ class DAppetizerActionMenu extends Component {
 		toBlock: 'latest'
 		}, async (err, events) => {
 			if (!err){
-				console.log(events[events.length - 1])
 				this.setState({platesBought: events[events.length - 1].returnValues.AppsBought, ethSpent: (events[events.length - 1].returnValues.ethEarned / 1000000000000000000)})
 			} else {
 				console.log(err);

@@ -15,14 +15,19 @@ class Home extends Component {
     super(props);
     this.state = {
       username: '',
-      wallet: ''
+      wallet: '',
+      identity: ''
     };
   }
 
   componentDidMount(){
-    var storedWallet = localStorage.getItem('wallet');
-    if (storedWallet) {
-      this.setState({wallet: storedWallet, username: localStorage.getItem('username')});
+    var storedIdentity = localStorage.getItem('identity');
+    if (storedIdentity) {
+      this.setState({
+        wallet: JSON.parse(localStorage.getItem('wallet')), 
+        username: localStorage.getItem('username'), 
+        identity: localStorage.getItem('identity')
+      });
     }
   }
 

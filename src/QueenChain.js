@@ -18,14 +18,19 @@ class QueenChain extends Component {
       username: '',
       password: '',
       wallet: '',
+      identity: '',
       isCreatingWallet: false
     };
   }
 
   componentDidMount(){
-    var storedWallet = localStorage.getItem('wallet');
-    if (storedWallet) {
-      this.setState({wallet: storedWallet, username: localStorage.getItem('username')});
+    var storedIdentity = localStorage.getItem('identity');
+    if (storedIdentity) {
+      this.setState({
+        wallet: JSON.parse(localStorage.getItem('wallet')), 
+        username: localStorage.getItem('username'), 
+        identity: localStorage.getItem('identity')
+      });
     }
   }
 
@@ -45,9 +50,37 @@ class QueenChain extends Component {
     })
 
     // MAKE CALL TO API TO CREATE MULTI-SIG WALLET
-    this.setState({wallet: newWallet, isCreatingWallet: false});
+    this.setState({wallet: JSON.stringify(newWallet)});
     localStorage.setItem('username', this.state.username);
     localStorage.setItem('wallet', this.state.wallet);
+    this.loadWalletData(newWallet, this.state.username)
+  }
+
+  async loadWalletData(wallet, username){
+
+    console.log(wallet)
+    var request = require('request');
+
+    var headers = {
+        'Content-Type': 'application/json'
+    };
+
+    var dataString = '{"account": "' + wallet.address + '", "ensName": "'+ username +'"}';
+
+    var options = {
+        url: 'http://35.172.185.48:3000/v1/bootstrap',
+        method: 'POST',
+        headers: headers,
+        body: dataString
+    };
+
+    request(options, (error, response, body) => {
+      if (!error && response.statusCode == 200) {
+            console.log(body);
+            localStorage.setItem('identity', JSON.parse(body).address);
+            this.setState({identity: JSON.parse(body).address, isCreatingWallet: false});
+        }
+    });
   }
 
 
@@ -72,10 +105,10 @@ class QueenChain extends Component {
         </div>
     </div>  
 
-    if (this.state.wallet === '' && this.state.isCreatingWallet === true) {
+    if (!this.state.identity && this.state.isCreatingWallet === true) {
       login = <LOADING> <i className="fa fa-circle-o-notch fa-spin"></i> Creating Account... </LOADING>
     }
-    if (this.state.wallet !== '') {
+    if (this.state.identity) {
       login = <div><h2>Welcome, {this.state.username}</h2></div>
       actionMenu = <QueenChainActionMenu/>
     }
