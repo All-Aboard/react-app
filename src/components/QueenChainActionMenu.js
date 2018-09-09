@@ -12,9 +12,7 @@ class QueenChainActionMenu extends Component {
 	constructor(props) {
 		super(props);
 	    this.state = {
-		  tea: '',
-		  newTea:'',
-		  ethSpent: 0
+	    	balance: 0
 		};
 		this.updateInformation();
 	}

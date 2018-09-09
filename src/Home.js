@@ -45,7 +45,7 @@ class Home extends Component {
 
     if (this.state.username !== '') {
       welcomeMessage = <div><h1>Welcome, {this.state.username}</h1></div>
-      walletInformation = <div> Multi-sig Wallet Info </div>
+      walletInformation = <WalletDetailsPane identity={this.state.identity}/>
       logOut = <div><Btn primary onClick={this.logOut.bind(this)} type="submit"> Log Out </Btn></div>
     }
     return (
