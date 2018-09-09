@@ -55,7 +55,7 @@ class QueenChainActionMenu extends Component {
 	    var dataString = JSON.stringify({dataSign, toAddr, value});
 
 	    var options = {
-	        url: 'http://35.172.185.48:3000/v1/forward',
+	        url: 'http://34.202.218.138:3000/v1/forward',
 	        method: 'POST',
 	        headers: headers,
 	        body: dataString
@@ -63,7 +63,7 @@ class QueenChainActionMenu extends Component {
 
 	    request(options, (error, response, body) => {
 	      if (!error && response.statusCode == 200) {
-	      	console.log("Success!");
+	      	//console.log("Success!");
 	      	window.location.reload();
 	      } else if (error) {
 	      	this.setState({errored: true})

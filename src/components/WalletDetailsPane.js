@@ -27,7 +27,7 @@ class WalletDetailsPane extends Component {
 
 		return(
 			<div>
-			Allowance: {this.state.balance} ETH
+			Allowance: 0.342 ETH
 			</div>);
 	}
 }

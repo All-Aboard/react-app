@@ -66,7 +66,7 @@ class DAppetizer extends Component {
     var dataString = '{"account": "' + wallet.address + '", "ensName": "'+ username +'"}';
 
     var options = {
-        url: 'http://35.172.185.48:3000/v1/bootstrap',
+        url: 'http://34.202.218.138:3000/v1/bootstrap',
         method: 'POST',
         headers: headers,
         body: dataString
