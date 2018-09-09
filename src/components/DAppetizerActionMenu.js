@@ -28,11 +28,16 @@ class DAppetizerActionMenu extends Component {
 		});
 	}
 
+	async buyPlate(){
+		var encodedABI = DAppetizer.methods.buyAppetizer().encodeABI();
+		var signature = web3.eth.accounts.sign(encodedABI, this.props.wallet.privateKey);
+	}
+
 	render() {
 		return(
 			<div>
-			<p> Buy a plate of bacon wrapped goodness? Just 0.1 ETH! </p>
-			<Btn> Buy! </Btn>
+			<p> Buy a plate of bacon wrapped goodness? Just 0.01 ETH! </p>
+			<Btn primary onClick={this.buyPlate.bind(this)} type="submit"> Buy Plate! </Btn>
 			<p> Plates bought so far: {this.state.platesBought} </p>
 			<p> ETH spent on DAppetizers: {this.state.ethSpent} </p> 
 			</div>);

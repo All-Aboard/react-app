@@ -83,8 +83,6 @@ class QueenChain extends Component {
     });
   }
 
-
-
   // TODO: Validate password, right now just placeholder
   render() {
 
@@ -110,7 +108,7 @@ class QueenChain extends Component {
     }
     if (this.state.identity) {
       login = <div><h2>Welcome, {this.state.username}</h2></div>
-      actionMenu = <QueenChainActionMenu/>
+      actionMenu = <QueenChainActionMenu identity={this.state.identity} wallet={this.state.wallet}/>
     }
 
 

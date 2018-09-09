@@ -19,7 +19,7 @@ class QueenChainActionMenu extends Component {
 		this.updateInformation();
 	}
 
-  	spillTea(e) {
+  	updateText(e) {
     	this.setState({newTea: e.target.value});
   	}
 
@@ -36,12 +36,17 @@ class QueenChainActionMenu extends Component {
 		});
 	}
 
+	async spillTea(){
+		var encodedABI = QueenChain.methods.spillTea(this.state.newTea).encodeABI();
+		var signature = web3.eth.accounts.sign(encodedABI, this.props.wallet.privateKey);
+	}
+
 	render() {
 		return(
 			<div>
 			<p> Spill the tea for 0.1 ETH! </p>
-			<TextField onChange={this.spillTea.bind(this)} placeholder="The Tea..."/>
-			<Btn> Spill it! </Btn>
+			<TextField onChange={this.updateText.bind(this)} placeholder="The Tea..."/>
+			<Btn primary onClick={this.spillTea.bind(this)} type="submit"> Spill it! </Btn>
 			<p> Current spilt tea: {this.state.tea}</p>
 			<p> ETH spent on QueenChain: {this.state.ethSpent} </p> 
 			</div>);

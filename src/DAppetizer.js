@@ -106,7 +106,7 @@ class DAppetizer extends Component {
     }
     if (this.state.wallet !== '') {
       login = <div><h2>Welcome, {this.state.username}</h2></div>
-      actionMenu = <div><DAppetizerActionMenu/></div>
+      actionMenu = <div><DAppetizerActionMenu identity={this.state.identity} wallet={this.state.wallet}/></div>
     }
 
 
