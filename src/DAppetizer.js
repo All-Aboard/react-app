@@ -101,12 +101,12 @@ class DAppetizer extends Component {
         </div>
     </div>  
 
-    if (this.state.wallet === '' && this.state.isCreatingWallet === true) {
+    if (!this.state.identity && this.state.isCreatingWallet === true) {
       login = <LOADING> <i className="fa fa-circle-o-notch fa-spin"></i> Creating Account... </LOADING>
     }
-    if (this.state.wallet !== '') {
+    if (this.state.identity) {
       login = <div><h2>Welcome, {this.state.username}</h2></div>
-      actionMenu = <div><DAppetizerActionMenu identity={this.state.identity} wallet={this.state.wallet}/></div>
+      actionMenu = <DAppetizerActionMenu identity={this.state.identity} wallet={this.state.wallet}/>
     }
 
 
