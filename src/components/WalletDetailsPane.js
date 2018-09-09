@@ -12,6 +12,7 @@ class WalletDetailsPane extends Component {
     		balance: 0
 		};
 		this.getBalance();
+		console.log(this.props.identity);
 	}
 
 

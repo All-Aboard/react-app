@@ -8,7 +8,6 @@ contract DAppetizer {
     uint public ethEarned = 0;
 
     function buyAppetizer() public payable{
-        require(msg.value >= .01 ether);
         numApps++;
         ethEarned += msg.value;
         emit AppBought(numApps, ethEarned);

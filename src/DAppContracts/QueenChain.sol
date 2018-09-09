@@ -8,7 +8,6 @@ contract QueenChain {
     uint public ethEarned = 0;
 
     function spillTea(string _message) public payable{
-        require(msg.value >= .01 ether);
         currentTea = _message;
         ethEarned += msg.value;
         emit SpillTea(_message, ethEarned);

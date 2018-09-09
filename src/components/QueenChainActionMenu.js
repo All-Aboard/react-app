@@ -12,7 +12,11 @@ class QueenChainActionMenu extends Component {
 	constructor(props) {
 		super(props);
 	    this.state = {
-	    	balance: 0
+		  tea: '',
+		  newTea:'',
+		  ethSpent: 0,
+		  isLoading: false,
+		  errored: false
 		};
 		this.updateInformation();
 	}
@@ -36,17 +40,59 @@ class QueenChainActionMenu extends Component {
 
 	async spillTea(){
 		var encodedABI = QueenChain.methods.spillTea(this.state.newTea).encodeABI();
-		var signature = web3.eth.accounts.sign(encodedABI, this.props.wallet.privateKey);
+		// var signature = web3.eth.accounts.sign(encodedABI, this.props.wallet.privateKey);
+		this.setState({isLoading: true})
+		this.sendSignData(encodedABI, QueenChain.options.address, '0x00000000000000000');
 	}
 
+	async sendSignData(dataSign, toAddr, value){
+	    var request = require('request');
+
+	    var headers = {
+	        'Content-Type': 'application/json'
+	    };
+
+	    var dataString = JSON.stringify({dataSign, toAddr, value});
+
+	    var options = {
+	        url: 'http://35.172.185.48:3000/v1/forward',
+	        method: 'POST',
+	        headers: headers,
+	        body: dataString
+	    };
+
+	    request(options, (error, response, body) => {
+	      if (!error && response.statusCode == 200) {
+	      	console.log("Success!");
+	      	window.location.reload();
+	      } else if (error) {
+	      	this.setState({errored: true})
+	      }
+	    });
+	}
+
+	//<p> ETH spent on QueenChain: {this.state.ethSpent} </p>
+
 	render() {
-		return(
-			<div>
-			<p> Spill the tea for 0.1 ETH! </p>
+
+		var loading = <div></div>
+		var content = <div>			<p> Spill the tea! </p>
 			<TextField onChange={this.updateText.bind(this)} placeholder="The Tea..."/>
 			<Btn primary onClick={this.spillTea.bind(this)} type="submit"> Spill it! </Btn>
-			<p> Current spilt tea: {this.state.tea}</p>
-			<p> ETH spent on QueenChain: {this.state.ethSpent} </p> 
+			<p> Current spilt tea: {this.state.tea}</p></div>
+
+		if (this.state.isLoading){
+			loading = <div>ENACTING TRANSACTION, PLEASE WAIT....</div>
+			content = <div></div>
+		} 
+		if (this.state.errored) {
+			loading = <div>TRANSACTION FAILED, PLEASE REFRESH</div>
+			content = <div></div>
+		}
+		return(
+			<div>
+			{content}
+			{loading}
 			</div>);
 	}
 }
