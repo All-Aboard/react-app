@@ -56,7 +56,7 @@ class DAppetizer extends Component {
 
     async loadWalletData(wallet, username){
 
-    console.log(wallet)
+    //console.log(wallet)
     var request = require('request');
 
     var headers = {
@@ -74,7 +74,7 @@ class DAppetizer extends Component {
 
     request(options, (error, response, body) => {
       if (!error && response.statusCode == 200) {
-            console.log(body);
+            //console.log(body);
             localStorage.setItem('identity', JSON.parse(body).address);
             this.setState({identity: JSON.parse(body).address, isCreatingWallet: false});
         }
