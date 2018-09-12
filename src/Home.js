@@ -38,7 +38,7 @@ class Home extends Component {
   }
 
   render() {
-    var welcomeMessage = <div> <h1> Welcome to EnterCrypto! </h1> 
+    var welcomeMessage = <div> <h1> All Aboard! </h1> 
     <div>Choose your favorite DApp in the top right menu to begin!</div></div>
     var walletInformation = <div></div>
     var logOut = <div></div>
