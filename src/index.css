@@ -4,3 +4,12 @@ body {
   font-family: sans-serif;
 }
 
+.proof {
+      font-size: 0.7em;
+      color: #BBBBBB;
+      margin-top: 35px;
+}
+
+.proof a {
+  color: #BBBBBB;
+}
