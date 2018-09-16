@@ -79,7 +79,9 @@ class QueenChainActionMenu extends Component {
 		var content = <div>			<p> Spill the tea! </p>
 			<TextField onChange={this.updateText.bind(this)} placeholder="The Tea..."/>
 			<Btn primary onClick={this.spillTea.bind(this)} type="submit"> Spill it! </Btn>
-			<p> Current spilt tea: {this.state.tea}</p></div>
+			<p> Current spilt tea: {this.state.tea}</p>
+			<p class="proof">You can verify this information in the <a href="https://ropsten.etherscan.io/address/0xb8d5277874067e02ed2f83888b43d762b01d9f10" target="qeenchainTab">last transaction of the QueenChain Dapp on Etherscan</a></p>
+			</div>
 
 		if (this.state.isLoading){
 			loading = <div>ENACTING TRANSACTION, PLEASE WAIT....</div>
